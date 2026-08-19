@@ -47,12 +47,12 @@ export class OutboxMessageEntity {
     columnType: 'timestamptz',
     nullable: true,
   })
-  nextAttemptAt?: Date;
+  nextAttemptAt: Date | null = null;
 
   @Property({
     fieldName: 'published_at',
     columnType: 'timestamptz',
     nullable: true,
   })
-  publishedAt?: Date;
+ publishedAt: Date | null = null;
 }

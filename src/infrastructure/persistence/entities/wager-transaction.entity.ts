@@ -151,7 +151,7 @@ export class WagerTransactionEntity {
     length: 255,
     nullable: true,
   })
-  referenceExternalTransactionId?: string;
+  referenceExternalTransactionId: string | null = null;
 
   @ManyToOne(() => WagerTransactionEntity, {
     fieldName: 'reference_transaction_id',
@@ -159,7 +159,7 @@ export class WagerTransactionEntity {
     nullable: true,
     deleteRule: 'restrict',
   })
-  referenceTransactionId?: string;
+  referenceTransactionId: string | null = null;
 
   @Property({
     length: 32,
@@ -171,7 +171,7 @@ export class WagerTransactionEntity {
     length: 64,
     nullable: true,
   })
-  failureCode?: string;
+  failureCode: string | null = null;
 
   @Property({
     fieldName: 'created_at',
@@ -184,5 +184,5 @@ export class WagerTransactionEntity {
     columnType: 'timestamptz',
     nullable: true,
   })
-  processedAt?: Date;
+  processedAt: Date | null = null;
 }

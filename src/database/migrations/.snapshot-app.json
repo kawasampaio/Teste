@@ -5,6 +5,312 @@
   ],
   "tables": [
     {
+      "name": "bets",
+      "schema": "public",
+      "columns": {
+        "balance_after_minor": {
+          "name": "balance_after_minor",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "bigint"
+        },
+        "chosen_number": {
+          "name": "chosen_number",
+          "type": "smallint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "smallint"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz(6)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": 6,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "datetime"
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar(3)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [
+            "BRL"
+          ],
+          "mappedType": "enum"
+        },
+        "drawn_number": {
+          "name": "drawn_number",
+          "type": "smallint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "smallint"
+        },
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": true,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "uuid"
+        },
+        "payout_minor": {
+          "name": "payout_minor",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "bigint"
+        },
+        "player_id": {
+          "name": "player_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": 255,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "string"
+        },
+        "result": {
+          "name": "result",
+          "type": "varchar(10)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": 10,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "string"
+        },
+        "stake_minor": {
+          "name": "stake_minor",
+          "type": "bigint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "bigint"
+        },
+        "wager_transaction_id": {
+          "name": "wager_transaction_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": true,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "uuid"
+        },
+        "wallet_id": {
+          "name": "wallet_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "collation": null,
+          "enumItems": [],
+          "mappedType": "uuid"
+        }
+      },
+      "indexes": [
+        {
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "keyName": "bets_pkey",
+          "primary": true,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "wager_transaction_id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "keyName": "uq_bet_wager_transaction",
+          "primary": false,
+          "unique": true
+        }
+      ],
+      "checks": [
+        {
+          "name": "ck_bet_balance_non_negative",
+          "expression": "balance_after_minor >= 0",
+          "definition": "CHECK ((balance_after_minor >= 0))",
+          "columnName": "balance_after_minor"
+        },
+        {
+          "name": "ck_bet_chosen_number",
+          "expression": "(chosen_number >= 1) AND (chosen_number <= 9)",
+          "definition": "CHECK (((chosen_number >= 1) AND (chosen_number <= 9)))",
+          "columnName": "chosen_number"
+        },
+        {
+          "name": "ck_bet_currency_brl",
+          "expression": "\"currency\" in ('BRL')",
+          "definition": "check (\"currency\" in ('BRL'))",
+          "columnName": "currency"
+        },
+        {
+          "name": "ck_bet_drawn_number",
+          "expression": "(drawn_number >= 1) AND (drawn_number <= 9)",
+          "definition": "CHECK (((drawn_number >= 1) AND (drawn_number <= 9)))",
+          "columnName": "drawn_number"
+        },
+        {
+          "name": "ck_bet_payout_non_negative",
+          "expression": "payout_minor >= 0",
+          "definition": "CHECK ((payout_minor >= 0))",
+          "columnName": "payout_minor"
+        },
+        {
+          "name": "ck_bet_result_consistency",
+          "expression": "((result = 'WIN'::text) AND (chosen_number > drawn_number) AND (payout_minor = (stake_minor * 2))) OR ((result = 'DRAW'::text) AND (chosen_number = drawn_number) AND (payout_minor = stake_minor)) OR ((result = 'LOSS'::text) AND (chosen_number < drawn_number) AND (payout_minor = 0))",
+          "definition": "CHECK (((((result)::text = 'WIN'::text) AND (chosen_number > drawn_number) AND (payout_minor = (stake_minor * 2))) OR (((result)::text = 'DRAW'::text) AND (chosen_number = drawn_number) AND (payout_minor = stake_minor)) OR (((result)::text = 'LOSS'::text) AND (chosen_number < drawn_number) AND (payout_minor = 0))))",
+          "columnName": "chosen_number"
+        },
+        {
+          "name": "ck_bet_stake_positive",
+          "expression": "stake_minor > 0",
+          "definition": "CHECK ((stake_minor > 0))",
+          "columnName": "stake_minor"
+        }
+      ],
+      "triggers": [],
+      "foreignKeys": {
+        "bets_wager_transaction_id_foreign": {
+          "columnNames": [
+            "wager_transaction_id"
+          ],
+          "constraintName": "bets_wager_transaction_id_foreign",
+          "localTableName": "public.bets",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.wager_transactions",
+          "deleteRule": "restrict"
+        },
+        "bets_wallet_id_foreign": {
+          "columnNames": [
+            "wallet_id"
+          ],
+          "constraintName": "bets_wallet_id_foreign",
+          "localTableName": "public.bets",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.wallets",
+          "deleteRule": "restrict"
+        }
+      },
+      "comment": null
+    },
+    {
       "name": "daily_ledgers",
       "schema": "public",
       "columns": {
@@ -413,18 +719,6 @@
       "indexes": [
         {
           "columnNames": [
-            "next_attempt_at",
-            "occurred_at"
-          ],
-          "composite": true,
-          "constraint": false,
-          "keyName": "idx_outbox_pending",
-          "primary": false,
-          "unique": false,
-          "where": "published_at IS NULL"
-        },
-        {
-          "columnNames": [
             "id"
           ],
           "composite": false,
@@ -808,18 +1102,6 @@
         },
         {
           "columnNames": [
-            "provider_id",
-            "reference_external_transaction_id"
-          ],
-          "composite": true,
-          "constraint": false,
-          "keyName": "uq_wager_single_rollback_reference",
-          "primary": false,
-          "unique": true,
-          "where": "(kind)::text = 'ROLLBACK'::text"
-        },
-        {
-          "columnNames": [
             "id"
           ],
           "composite": false,
@@ -1181,27 +1463,7 @@
           "columnName": "wallet_version"
         }
       ],
-      "triggers": [
-        {
-          "name": "ctrg_ledger_consistency",
-          "timing": "after",
-          "events": [
-            "insert"
-          ],
-          "forEach": "row",
-          "body": ""
-        },
-        {
-          "name": "trg_wallet_ledger_immutable",
-          "timing": "before",
-          "events": [
-            "delete",
-            "update"
-          ],
-          "forEach": "row",
-          "body": ""
-        }
-      ],
+      "triggers": [],
       "foreignKeys": {
         "wallet_ledger_entries_daily_ledger_id_foreign": {
           "columnNames": [
@@ -1411,27 +1673,7 @@
           "columnName": "version"
         }
       ],
-      "triggers": [
-        {
-          "name": "ctrg_wallet_requires_ledger",
-          "timing": "after",
-          "events": [
-            "insert",
-            "update"
-          ],
-          "forEach": "row",
-          "body": ""
-        },
-        {
-          "name": "trg_wallet_balance_version",
-          "timing": "before",
-          "events": [
-            "update"
-          ],
-          "forEach": "row",
-          "body": ""
-        }
-      ],
+      "triggers": [],
       "foreignKeys": {},
       "comment": null
     }

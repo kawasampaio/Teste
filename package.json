@@ -32,6 +32,8 @@
     "@nestjs/platform-socket.io": "^11.2.1",
     "@nestjs/serve-static": "^5.0.5",
     "@nestjs/websockets": "^11.2.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
     "decimal.js": "^10.6.0",
     "dotenv": "^17.4.2",
     "reflect-metadata": "^0.2.2",
@@ -66,13 +68,13 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
   },
-"mikro-orm": {
-  "preferTs": true,
-  "configPaths": [
-    "./src/mikro-orm.config.ts",
-    "./dist/mikro-orm.config.js"
-  ]
-},
+  "mikro-orm": {
+    "preferTs": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  },
   "jest": {
     "moduleFileExtensions": [
       "js",
