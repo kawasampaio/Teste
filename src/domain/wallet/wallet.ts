@@ -61,7 +61,7 @@ export class Wallet {
   }
 
   /**
-   * Reconstrói a Wallet a partir do estado persistido.
+   * Reconstroi a Wallet a partir do estado persistido.
    * Não executa novamente transições de negócio.
    */
   static rehydrate(state: WalletState): Wallet {
@@ -122,33 +122,33 @@ export class Wallet {
   }
 
   credit(
-    money: Money,
-    occurredAt: Date = new Date(),
-  ): WalletMovement {
-    this.assertSameCurrency(money);
+  money: Money,
+  occurredAt: Date = new Date(),
+): WalletMovement {
+  this.assertSameCurrency(money);
 
-    if (!money.isPositive()) {
-      throw new Error('Credit amount must be positive');
-    }
-
-    const balanceBefore = this._balance;
-    const balanceAfter = this._balance.add(money);
-
-    this._balance = balanceAfter;
-    this._version += 1;
-    this._updatedAt = occurredAt;
-
-    return {
-      walletId: this.id,
-      playerId: this.playerId,
-      type: 'CREDIT',
-      money,
-      balanceBefore,
-      balanceAfter,
-      walletVersion: this._version,
-      occurredAt,
-    };
+  if (!money.isPositive()) {
+    throw new Error('Credit amount must be positive');
   }
+
+  const balanceBefore = this._balance;
+  const balanceAfter = this._balance.add(money);
+
+  this._balance = balanceAfter;
+  this._version += 1;
+  this._updatedAt = occurredAt;
+
+  return {
+    walletId: this.id,
+    playerId: this.playerId,
+    type: 'CREDIT',
+    money,
+    balanceBefore,
+    balanceAfter,
+    walletVersion: this._version,
+    occurredAt,
+  };
+}
 
   private assertSameCurrency(money: Money): void {
     if (money.currency !== this.currency) {

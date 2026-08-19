@@ -5,6 +5,10 @@
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -16,7 +20,6 @@
     "skipLibCheck": true,
 
     "strict": true,
-    "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
@@ -25,5 +28,17 @@
     "forceConsistentCasingInFileNames": true,
 
     "types": ["bun"]
-  }
+  },
+
+  "include": [
+    "src/**/*.ts"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }
