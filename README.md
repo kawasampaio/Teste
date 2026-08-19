@@ -1,7 +1,5 @@
 # 🎲 Dados da Sorte
 
-Projeto full stack de um jogo simples de apostas com carteira digital.
-
 A ideia é fácil de entender: o jogador escolhe um número de **1 a 9**, informa o valor da aposta e o backend sorteia outro número. A regra final ficou assim:
 
 - **Número escolhido maior que o sorteado:** vitória.
